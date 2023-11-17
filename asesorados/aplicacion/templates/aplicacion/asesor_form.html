@@ -1,0 +1,20 @@
+{% extends "aplicacion/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form action="" method="post" autocomplete="off">
+    {%csrf_token%}
+    {{form|crispy}}
+    <div class="row">
+        <div class="col-md-8">
+            <button type="submit" class="btn btn-success btn-block btn-lg" style="display: block; margin-left: auto; margin-right: auto;"><i class="fa-regular fa-floppy-disk"></i> Registrar</button>
+        </div>
+        <div class="md-4">
+            <a href="{% url 'listar' %}" class="btn btn-secondary btn-block btn-lg">
+                <i class="fa-solid fa-backward"></i> Regresar a la lista
+            </a>
+        </div>
+    </div>
+</form>
+
+{% endblock content %}

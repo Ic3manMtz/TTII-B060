@@ -1,0 +1,44 @@
+{% extends "aplicacion/base.html" %}
+
+{% block content %}
+
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Nombre</td>
+            <td>Primer apellido</td>
+            <td>Segundo apellido</td>
+            <td>Fecha de Nacimiendo</td>
+            <td>Rol</td>
+            <td>
+                <a href="{% url 'insertar' %}" class="btn btn-outline-success">
+                    <i class="fa-solid fa-plus"></i> Agregar
+                </a>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for usuario in lista_asesorados %}
+            <tr>
+                <td>{{usuario.nombre}}</td>
+                <td>{{usuario.primerapellido}}</td>
+                <td>{{usuario.segundoapellido}}</td>
+                <td>{{usuario.fechanacimiento}}</td>
+                <td>{{usuario.rol}}</td>
+                <td>
+                    <a href="{% url 'actualizar' usuario.idusuario %}" class="btn text-secondary-px-0">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </a>
+                    <form action="{% url 'borrar' usuario.idusuario %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}
